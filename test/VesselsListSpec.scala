@@ -7,7 +7,7 @@ import play.api.test._
 import utils.MongoTestHelper.withMongoDb
 
 @RunWith(classOf[JUnitRunner])
-class VesselsSpec extends Specification {
+class VesselsListSpec extends Specification {
 
   "Application" should {
 
