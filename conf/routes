@@ -7,6 +7,7 @@ GET         /                    controllers.Vessels.index
 GET         /vessels             controllers.Vessels.list(page: Option[Int], max:Option[Int], filter: Option[String])
 POST        /vessels             controllers.Vessels.create
 PUT         /vessels/:id         controllers.Vessels.edit(id: String)
+DELETE      /vessels/:id         controllers.Vessels.delete(id: String)
 
 
 # Map static resources from the /public folder to the /assets URL path

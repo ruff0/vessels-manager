@@ -105,4 +105,13 @@ object Vessels extends Controller with MongoController {
       }
     )
   }
+
+  def delete(id: String) = Action.async { implicit request =>
+    collection.remove(Json.obj("_id" -> id)).map { lastError =>
+      lastError.updated match {
+        case 1 => NoContent
+        case 0 => NotFound("The vessel that you are looking for not exists")
+      }
+    }
+  }
 }
