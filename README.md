@@ -112,7 +112,7 @@ Possible responses:
 
 ### Edit an existing vessel
 ```
-PATCH /vessels/:id receives a vessel's JSON Object and updates the proper one which has the indicated id
+PUT /vessels/:id receives a vessel's JSON Object and updates the proper one which has the indicated id
 
 Example body request:
 
