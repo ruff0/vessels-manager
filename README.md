@@ -64,26 +64,26 @@ Expected response example:
 	"total_records": 2,
 	"result": [
 		{
-			"id": 1,
+			"_id": 1,
 			"name": "Vessel 1",
 			"width": 25,
 			"length": 226,
 			"draft": 8,
-			"last_coordinate": {
+			"lastCoordinate": {
 				"latitude": 53.323473,
 				"longitude": -6.173601
 			}
 		},{
-                        "id": 2,
-                        "name": "Vessel 2",
-                        "width": 25,
-                        "length": 226,
-                        "draft": 8,
-                        "last_coordinate": {
-                                "latitude": 53.643649,
-                                "longitude": -3.148441
-                        }
-                }
+            "_id": 2,
+            "name": "Vessel 2",
+            "width": 25,
+            "length": 226,
+            "draft": 8,
+            "lastCoordinate": {
+                    "latitude": 53.643649,
+                    "longitude": -3.148441
+            }
+        }
 	]
 }
 ```
@@ -98,7 +98,7 @@ Example body request:
 	"width": 25,
 	"length": 226,
 	"draft": 8,
-	"last_coordinate": {
+	"lastCoordinate": {
         	"latitude": 53.643649,
             "longitude": -3.148441
         }
@@ -121,7 +121,7 @@ Example body request:
     "width": 25,
     "length": 226,
     "draft": 8,
-    "last_coordinate": {
+    "lastCoordinate": {
             "latitude": 53.643649,
             "longitude": -6.543478
         }
@@ -131,12 +131,12 @@ Possible responses:
 
 200 The vessel has been updated
     {
-        "id": 3
+        "_id": 3
         "name": "Vessel 3",
         "width": 25,
         "length": 226,
         "draft": 8,
-        "last_coordinate": {
+        "lastCoordinate": {
                 "latitude": 53.643649,
                 "longitude": -6.543478
             }
