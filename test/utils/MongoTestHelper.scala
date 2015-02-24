@@ -24,6 +24,7 @@ object MongoTestHelper {
    * Run the given block with MongoDB
    */
   def withMongoDb[T](block: Application => T): T = {
+    
     implicit val app = FakeApplication(
       additionalConfiguration = Map("mongodb.uri" -> "mongodb://localhost/unittests")
     )

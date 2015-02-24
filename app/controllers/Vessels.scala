@@ -91,4 +91,18 @@ object Vessels extends Controller with MongoController {
     )
   }
 
+  def edit(id: String) = Action.async(parse.json) { implicit request =>
+
+    vesselForm.bindFromRequest.fold(
+      validationErrors => Future.successful(UnprocessableEntity("There are missing or invalid data")),
+      vessel => {
+        collection.update(Json.obj("_id" -> id), vessel.copy(_id = BSONObjectID(id))).map { lastError =>
+          lastError.updated match {
+            case 1 => Ok(Json.toJson(vessel))
+            case 0 => NotFound("The vessel that you are looking for not exists")
+          }
+        }
+      }
+    )
+  }
 }
