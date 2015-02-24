@@ -1,11 +1,14 @@
 package controllers
 
-import models.Vessel
+import models.{Coordinate, Vessel}
 import play.api._
+import play.api.data.Form
+import play.api.data.Forms._
 import play.api.mvc._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.functional.syntax._
 import play.api.libs.json._
+import reactivemongo.bson.BSONObjectID
 import views.html
 import scala.concurrent.Future
 
@@ -20,6 +23,16 @@ import play.modules.reactivemongo.json.collection.JSONCollection
 object Vessels extends Controller with MongoController {
 
   def collection: JSONCollection = db.collection[JSONCollection]("vessels")
+
+  val vesselForm = Form(
+    mapping(
+      "name" -> nonEmptyText,
+      "width" -> number,
+      "height" -> number,
+      "draft" -> number,
+      "lastCoordinate" -> mapping("latitude" -> bigDecimal, "longitude" -> bigDecimal)(Coordinate.apply)(Coordinate.unapply),
+      "_id" -> ignored(BSONObjectID.generate: BSONObjectID))(Vessel.apply)(Vessel.unapply))
+
 
   import play.api.data.Form
   import models._
@@ -62,4 +75,20 @@ object Vessels extends Controller with MongoController {
       ))
     }
   }
+  
+  
+  def create = Action.async(parse.json) { implicit request =>
+    
+    vesselForm.bindFromRequest.fold(
+      validationErrors => Future.successful(UnprocessableEntity("There are missing or invalid data")),
+      vessel => {
+        collection.insert(vessel).map { lastError =>
+          Logger.debug(s"Successfully inserted with LastError: $lastError")
+          Created(Json.toJson(vessel))
+        }
+        
+      }
+    )
+  }
+
 }

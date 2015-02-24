@@ -11,11 +11,9 @@ import scala.util.Try
 /**
  * Created by Damian on 2/20/15.
  */
-case class Vessel(name : String, width: Int, height: Int, draft: Int, lastCoordinate: Coordinate, _id: BSONObjectID = BSONObjectID.generate) {
+case class Vessel(name : String, width: Int, height: Int, draft: Int, lastCoordinate: Coordinate, _id: BSONObjectID = BSONObjectID.generate)
 
-}
-
-case class Coordinate(latitude: Double, longitude: Double)
+case class Coordinate(latitude: BigDecimal, longitude: BigDecimal)
 
 
 
