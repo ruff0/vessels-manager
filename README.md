@@ -55,6 +55,7 @@ GET /vessels retrieves all the vessels
 Optional parameters:
 - page | set the page number to retrieve
 - max | set the maximum of records per page
+- filter | filter the result using vessel's name as criteria
 
 Expected response example:
 
