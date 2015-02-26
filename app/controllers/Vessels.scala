@@ -39,7 +39,7 @@ object Vessels extends Controller with MongoController {
   import models.JsonFormats._
 
   def index = Action {
-    Ok(views.html.index("Your new application is ready."))
+    Ok(views.html.index())
   }
 
   def list(page: Option[Int], max: Option[Int], filter: Option[String]) = Action.async { implicit request =>
